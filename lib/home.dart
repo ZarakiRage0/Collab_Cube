@@ -61,7 +61,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                   ),
                   Text(
-                    'Plan Cube\nColaboratif',
+                    'Plan Cubes\nCollaboratifs',
                     style: FlutterFlowTheme.of(context).title1.override(
                           fontFamily: 'Poppins',
                           color: Color(0xFF41535B),
