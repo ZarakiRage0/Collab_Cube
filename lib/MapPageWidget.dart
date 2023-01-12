@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import 'building.dart';
+
 var center = LatLng(49.18172602337092, -0.3470258165673014);
-LatLng london = LatLng(51.5, -0.09);
-LatLng paris = LatLng(48.8566, 2.3522);
-LatLng dublin = LatLng(53.3498, -6.2603);
+
 
 final markers = <Marker>[
   Marker(
@@ -36,6 +36,8 @@ class MapPageWidget extends StatefulWidget {
 class _MapPageWidgetState extends State<MapPageWidget> {
   @override
   Widget build(BuildContext context) {
+    Future<List<Building>?> buildings = getBuildings();
+
     return Scaffold(
       body: Center(
         child: FlutterMap(

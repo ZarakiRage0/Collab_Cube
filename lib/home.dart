@@ -1,3 +1,4 @@
+import 'building.dart';
 import 'flutter_flow/src/flutter_flow/flutter_flow_icon_button.dart';
 import 'flutter_flow/src/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/src/flutter_flow/flutter_flow_widgets.dart';
@@ -69,12 +70,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                 alignment: AlignmentDirectional(0, 0.75),
                 child: FFButtonWidget(
                   onPressed: () {
+                    print('Button pressed ...');
+                    getBuildings();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => MapPageWidget(),
                         ));
-                    print('Button pressed ...');
+
                   },
                   text: 'Réserver',
                   options: FFButtonOptions(
