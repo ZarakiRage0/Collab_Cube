@@ -21,7 +21,7 @@ final markers = <Marker>[
               builder: (context) => ReservationDescriptionPageWidget(),
             ));
       },
-      child: const Icon(Icons.home_filled, color: Colors.blue,),
+      child: const Icon(Icons.home_filled, color: Color.fromARGB(255,56,81,84),),
     ),
   ),
 ];
@@ -41,8 +41,9 @@ class _MapPageWidgetState extends State<MapPageWidget> {
         child: FlutterMap(
           options: MapOptions(
             center: center,
-            zoom: 9.2,
-            interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+            zoom: 16.0,
+            maxZoom: 19.0,
+            interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag | InteractiveFlag.doubleTapZoom,
           ),
           nonRotatedChildren: [
             AttributionWidget.defaultWidget(

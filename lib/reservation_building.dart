@@ -112,7 +112,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                                 options: FFButtonOptions(
                                   width: 75,
                                   height: 40,
-                                  color: Color(0xFF00CCFF),
+                                  color: Color(0xFF8EAFA1),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -138,7 +138,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                                 options: FFButtonOptions(
                                   width: 75,
                                   height: 40,
-                                  color: Color(0xFF00CCFF),
+                                  color: Color(0xFF8EAFA1),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -164,7 +164,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                                 options: FFButtonOptions(
                                   width: 130,
                                   height: 40,
-                                  color: Color(0xFF00CCFF),
+                                  color: Color(0xFF8EAFA1),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -190,7 +190,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                                 options: FFButtonOptions(
                                   width: 75,
                                   height: 40,
-                                  color: Color(0xFF00CCFF),
+                                  color: Color(0xFF8EAFA1),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -216,7 +216,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                                 options: FFButtonOptions(
                                   width: 75,
                                   height: 40,
-                                  color: Color(0xFF00CCFF),
+                                  color: Color(0xFF8EAFA1),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -242,7 +242,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                                 options: FFButtonOptions(
                                   width: 75,
                                   height: 40,
-                                  color: Color(0xFF00CCFF),
+                                  color: Color(0xFF8EAFA1),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -299,7 +299,7 @@ class _ReservationDescriptionPageWidgetState extends State<ReservationDescriptio
                       options: FFButtonOptions(
                         width: 130,
                         height: 40,
-                        color: FlutterFlowTheme.of(context).primaryColor,
+                        color: Color(0x364F53ff),
                         textStyle:
                         FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Poppins',

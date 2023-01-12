@@ -83,4 +83,6 @@ flutter:
 
   assets:
     - assets/images/dome.png
+    - assets/images/office.png
+    - assets/images/logo.png
 
