@@ -44,13 +44,13 @@ class Building {
   @override
   String toString() {
     return 'Building{'
-        '\tidBuilding: $idBuilding,'
-        '\tadress: $adress,'
-        '\tpostalCode: $postalCode,'
-        '\tcity: $city,'
-        '\tlatitude: $latitude,'
-        '\tlongitude: $longitude,'
-        '\tmaxPlace: $maxPlace}';
+        '\n\tidBuilding: $idBuilding,'
+        '\n\tadress: $adress,'
+        '\n\tpostalCode: $postalCode,'
+        '\n\tcity: $city,'
+        '\n\tlatitude: $latitude,'
+        '\n\tlongitude: $longitude,'
+        '\n\tmaxPlace: $maxPlace}';
   }
 }
 
@@ -65,14 +65,29 @@ Future<List<Building>?> getBuildings() async {
   final response = await http.get(uri);
   if (response.statusCode == 200) {
     final jsonResponse = jsonDecode(response.body);
-    print(jsonResponse);
     List<Building> buildings = [];
     for (var jsonBuilding in jsonResponse) {
       buildings.add(Building.fromJson(jsonBuilding));
     }
-    for(Building b in buildings){
-      print(b);
+    return buildings;
+  } else {
+    print('Request failed with status: ${response.statusCode}');
+    return null;
+  }
+}
+Future<List<Building>?> putJSON( Map<String, dynamic> jsonData) async {
+  String url = "https://intensif02.ensicaen.fr/api/building/available";
+  final response = await http.put(Uri.parse(url),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(jsonData));
+  if (response.statusCode == 200) {
+    final jsonResponse = jsonDecode(response.body);
+    List<Building> buildings = [];
+    for (var jsonBuilding in jsonResponse) {
+      buildings.add(Building.fromJson(jsonBuilding));
     }
+    print(jsonData);
+    print(jsonResponse);
     return buildings;
   } else {
     print('Request failed with status: ${response.statusCode}');

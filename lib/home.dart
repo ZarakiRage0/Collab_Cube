@@ -1,3 +1,7 @@
+import 'package:collab_cube/formPage.dart';
+import 'package:collab_cube/reservation.dart';
+import 'package:collab_cube/reservationsPage.dart';
+
 import 'building.dart';
 import 'flutter_flow/src/flutter_flow/flutter_flow_icon_button.dart';
 import 'flutter_flow/src/flutter_flow/flutter_flow_theme.dart';
@@ -29,7 +33,6 @@ class _HomeWidgetState extends State<HomeWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFD7DCDF),
-
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
@@ -60,24 +63,23 @@ class _HomeWidgetState extends State<HomeWidget> {
                   Text(
                     'Plan Cube\nColaboratif',
                     style: FlutterFlowTheme.of(context).title1.override(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFF41535B),
-                    ),
+                          fontFamily: 'Poppins',
+                          color: Color(0xFF41535B),
+                        ),
                   ),
                 ],
               ),
               Align(
                 alignment: AlignmentDirectional(0, 0.75),
                 child: FFButtonWidget(
-                  onPressed: () {
+                  onPressed: () async {
                     print('Button pressed ...');
-                    getBuildings();
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MapPageWidget(),
+                          builder: (context) => AvailableBuildingsPage(),
                         ));
-
                   },
                   text: 'Réserver',
                   options: FFButtonOptions(
@@ -85,9 +87,40 @@ class _HomeWidgetState extends State<HomeWidget> {
                     height: 40,
                     color: Color(0xFF8EAFA1),
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFFEEF0EF),
+                          fontFamily: 'Poppins',
+                          color: Color(0xFFEEF0EF),
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
                     ),
+                    borderRadius: 8.0,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, 0.95),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    print('Button pressed ...');
+
+                    var reservations = await getReservations();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ReservationListPage(reservations: reservations!),
+                        ));
+                  },
+                  text: 'Voir les réservations',
+                  options: FFButtonOptions(
+                    width: 175,
+                    height: 40,
+                    color: Color(0xFF8EAFA1),
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: Color(0xFFEEF0EF),
+                        ),
                     borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1,
