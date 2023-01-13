@@ -41,7 +41,7 @@ class _MapPageWidgetState extends State<MapPageWidget> {
           ],
           children: [
             TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              urlTemplate: 'https://openstreetmap.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
               userAgentPackageName: 'com.example.app',
             ),
             //MarkerLayer(markers: widget.markers),
@@ -93,10 +93,7 @@ List<Marker> prepareBuildingMarkers(List<Building> buildings) {
       width: 80,
       height: 80,
       point: LatLng(double.parse(building.latitude), double.parse(building.longitude)),
-      builder: (ctx) => const Icon(
-        Icons.home_filled,
-        color: Color.fromARGB(255, 56, 81, 84),
-      ),
+      builder: (ctx) => Image.asset("assets/images/marker-icon.png"),
     );
   }).toList();
 }

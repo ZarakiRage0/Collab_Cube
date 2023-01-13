@@ -16,7 +16,7 @@ class _ReservationListPageState extends State<ReservationListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Liste de réservations"),
+        title: Text("Liste des réservations"),
         backgroundColor: Color(0xFF8EAFA1),
       ),
       body: ListView.builder(
