@@ -51,7 +51,7 @@ class _AvailableBuildingsPageState extends State<AvailableBuildingsPage> {
                 child: DateTimeField(
                   controller: _dateStartController,
                   decoration: InputDecoration(labelText: "Date d'arrivée"),
-                  format: DateFormat("dd/MM/yyyy HH:mm"),
+                  format: DateFormat("dd/MM/yyyy"),
                   validator: (value) {
                     if (value == null) {
                       return "Veuillez sélectionner une date";
@@ -68,7 +68,7 @@ class _AvailableBuildingsPageState extends State<AvailableBuildingsPage> {
                 child: DateTimeField(
                   controller: _dateEndController,
                   decoration: InputDecoration(labelText: "Date de départ"),
-                  format: DateFormat("dd/MM/yyyy HH:mm"),
+                  format: DateFormat("dd/MM/yyyy"),
                   validator: (value) {
                     if (value == null) {
                       return "Veuillez sélectionner une date";
@@ -100,8 +100,8 @@ class _AvailableBuildingsPageState extends State<AvailableBuildingsPage> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      var start = DateFormat("dd/MM/yyyy HH:mm").parse(_dateStartController.text);
-                      var end = DateFormat("dd/MM/yyyy HH:mm").parse(_dateEndController.text);
+                      var start = DateFormat("dd/MM/yyyy").parse(_dateStartController.text);
+                      var end = DateFormat("dd/MM/yyyy").parse(_dateEndController.text);
                       var apiFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
                       Map<String, dynamic> jsonData = {
