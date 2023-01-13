@@ -20,7 +20,6 @@ class MapPageWidget extends StatefulWidget {
 }
 
 class _MapPageWidgetState extends State<MapPageWidget> {
-
   @override
   Widget build(BuildContext context) {
     final PopupController _popupLayerController = PopupController();
@@ -48,41 +47,38 @@ class _MapPageWidgetState extends State<MapPageWidget> {
             //MarkerLayer(markers: widget.markers),
             PopupMarkerLayerWidget(
               options: PopupMarkerLayerOptions(
-                popupController: _popupLayerController,
-                markers: widget.markers,
-                markerRotateAlignment:
-                PopupMarkerLayerOptions.rotationAlignmentFor(AnchorAlign.top),
-                popupBuilder: (BuildContext context, Marker marker) =>
-                  Container(
-                    constraints: BoxConstraints(
-                      maxHeight: 120,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    color: Colors.white,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text("${widget.buildings[ widget.markers.indexOf(marker)].adress}"),
-                        Text("${widget.buildings[ widget.markers.indexOf(marker)].city}, ${widget.buildings[ widget.markers.indexOf(marker)].postalCode}"),
-                        Text("Places disponibles: ${widget.buildings[ widget.markers.indexOf(marker)].maxPlace}"),
-                        ElevatedButton(
-                            style:ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF8EAFA1)),
-                            ),
-                            onPressed: () async {
-                              var reservations = await getReservations();
-                              Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    ReservationListPage(reservations: reservations!),
-                              ));
-                            },
-                            child: Text("Réserver")),
-                      ],
-                    ),
-                  )
-              ),
+                  popupController: _popupLayerController,
+                  markers: widget.markers,
+                  markerRotateAlignment: PopupMarkerLayerOptions.rotationAlignmentFor(AnchorAlign.top),
+                  popupBuilder: (BuildContext context, Marker marker) => Container(
+                        constraints: BoxConstraints(
+                          maxHeight: 120,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        color: Colors.white,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("${widget.buildings[widget.markers.indexOf(marker)].adress}"),
+                            Text(
+                                "${widget.buildings[widget.markers.indexOf(marker)].postalCode}, ${widget.buildings[widget.markers.indexOf(marker)].city}"),
+                            Text("Places disponibles: ${widget.buildings[widget.markers.indexOf(marker)].maxPlace}"),
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF8EAFA1)),
+                                ),
+                                onPressed: () async {
+                                  var reservations = await getReservations();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ReservationListPage(reservations: reservations!),
+                                      ));
+                                },
+                                child: Text("Réserver")),
+                          ],
+                        ),
+                      )),
             ),
           ],
         ),
@@ -91,13 +87,16 @@ class _MapPageWidgetState extends State<MapPageWidget> {
   }
 }
 
-List<Marker> prepareBuildingMarkers(List<Building> buildings){
+List<Marker> prepareBuildingMarkers(List<Building> buildings) {
   return buildings.map((building) {
     return Marker(
       width: 80,
       height: 80,
       point: LatLng(double.parse(building.latitude), double.parse(building.longitude)),
-      builder: (ctx) => const Icon(Icons.home_filled, color: Color.fromARGB(255,56,81,84),),
+      builder: (ctx) => const Icon(
+        Icons.home_filled,
+        color: Color.fromARGB(255, 56, 81, 84),
+      ),
     );
   }).toList();
 }

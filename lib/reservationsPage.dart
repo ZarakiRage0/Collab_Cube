@@ -16,7 +16,7 @@ class _ReservationListPageState extends State<ReservationListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("List de réservations"),
+        title: Text("Liste de réservations"),
         backgroundColor: Color(0xFF8EAFA1),
       ),
       body: ListView.builder(
@@ -25,7 +25,7 @@ class _ReservationListPageState extends State<ReservationListPage> {
           Reservation reservation = widget.reservations[index];
           return ListTile(
             title: Text("@ ${reservation.building.adress}"),
-            subtitle: Text("Debut: ${reformatDate(reservation.dateStart)} \nFin: ${reformatDate(reservation.dateStart)}"),
+            subtitle: Text("Début: ${reformatDate(reservation.dateStart)} \nFin: ${reformatDate(reservation.dateStart)}"),
             trailing: Text("Places: ${reservation.place}"),
           );
         },

@@ -1,4 +1,3 @@
-
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 
@@ -18,6 +17,11 @@ class _AvailableBuildingsPageState extends State<AvailableBuildingsPage> {
   final _dateEndController = TextEditingController();
   final _needPlaceController = TextEditingController();
 
+  _AvailableBuildingsPageState() {
+    _cityController.text = "Caen";
+    _needPlaceController.text = "4";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,81 +38,76 @@ class _AvailableBuildingsPageState extends State<AvailableBuildingsPage> {
               Container(
                 child: TextFormField(
                   controller: _cityController,
-                  decoration: InputDecoration(labelText: "City"),
+                  decoration: InputDecoration(labelText: "Ville"),
                   validator: (value) {
                     if (value != null && value!.isEmpty) {
-                      return "Please enter a city";
+                      return "Veuillez sélectionner une ville";
                     }
                     return null;
                   },
                 ),
               ),
               Container(
-
                 child: DateTimeField(
                   controller: _dateStartController,
-                  decoration: InputDecoration(labelText: "Start date"),
-                  format: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+                  decoration: InputDecoration(labelText: "Date d'arrivée"),
+                  format: DateFormat("dd/MM/yyyy HH:mm"),
                   validator: (value) {
                     if (value == null) {
-                      return "Please enter a start date";
+                      return "Veuillez sélectionner une date";
                     }
                     return null;
                   },
                   onShowPicker: (BuildContext context, DateTime? currentValue) {
                     return showDatePicker(
-                        context: context,
-                        firstDate: DateTime(1900),
-                        initialDate: currentValue ?? DateTime.now(),
-                        lastDate: DateTime(2100));
+                        context: context, firstDate: DateTime(1900), initialDate: currentValue ?? DateTime.now(), lastDate: DateTime(2100));
                   },
                 ),
               ),
               Container(
                 child: DateTimeField(
                   controller: _dateEndController,
-                  decoration: InputDecoration(labelText: "End date"),
-                  format: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+                  decoration: InputDecoration(labelText: "Date de départ"),
+                  format: DateFormat("dd/MM/yyyy HH:mm"),
                   validator: (value) {
                     if (value == null) {
-                      return "Please enter an end date";
+                      return "Veuillez sélectionner une date";
                     }
                     return null;
                   },
                   onShowPicker: (BuildContext context, DateTime? currentValue) {
                     return showDatePicker(
-                        context: context,
-                        firstDate: DateTime(1900),
-                        initialDate: currentValue ?? DateTime.now(),
-                        lastDate: DateTime(2100));
+                        context: context, firstDate: DateTime(1900), initialDate: currentValue ?? DateTime.now(), lastDate: DateTime(2100));
                   },
                 ),
               ),
               Container(
                 child: TextFormField(
                   controller: _needPlaceController,
-                  decoration: InputDecoration(labelText: "Needed Places"),
+                  decoration: InputDecoration(labelText: "Nombre de personnes"),
                   validator: (value) {
                     if (value != null && value!.isEmpty) {
-                      return "Please enter the needed places";
+                      return "Veuillez sélectionner le nombre de personnes";
                     }
                     return null;
                   },
                 ),
               ),
               Container(
-
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xFF8EAFA1)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF8EAFA1)),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
+                      var start = DateFormat("dd/MM/yyyy HH:mm").parse(_dateStartController.text);
+                      var end = DateFormat("dd/MM/yyyy HH:mm").parse(_dateEndController.text);
+                      var apiFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
                       Map<String, dynamic> jsonData = {
                         "city": _cityController.text,
-                        "dateStart": _dateStartController.text,
-                        "dateEnd": _dateEndController.text,
+                        "dateStart": apiFormat.format(start),
+                        "dateEnd": apiFormat.format(end),
                         "needPlace": int.parse(_needPlaceController.text)
                       };
                       var buildings = await putJSON(jsonData);
@@ -117,12 +116,11 @@ class _AvailableBuildingsPageState extends State<AvailableBuildingsPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MapPageWidget(
-                                markers: markers, buildings: buildings),
+                            builder: (context) => MapPageWidget(markers: markers, buildings: buildings),
                           ));
                     }
                   },
-                  child: Text("Get Available Buildings"),
+                  child: Text("Afficher les bâtiments"),
                 ),
               ),
             ],
