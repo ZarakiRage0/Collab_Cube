@@ -108,13 +108,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ReservationListPage(reservations: reservations!),
+                          builder: (context) => ReservationListPage(reservations: reservations!),
                         ));
                   },
                   text: 'Voir les réservations',
                   options: FFButtonOptions(
-                    width: 175,
+                    width: 200,
                     height: 40,
                     color: Color(0xFF8EAFA1),
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
